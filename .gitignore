@@ -7,14 +7,50 @@
 *.o
 *.obj
 
+# 可执行文件（无扩展名）- 排除特定目录和文件
+/**/hello
+/**/variables
+/**/arrays
+/**/controlFlow
+/**/inputOutput
+/**/const_demo
+/**/variables_types
+/**/array_memory
+/**/stack_heap
+/**/const_vs_constexpr_deep
+/**/const_string_ref
+/**/lambda_explained
+/**/const_shared_ptr
+/**/iterator_deref
+/**/star_arrow
+/**/const_ptr_ref
+/**/declaration_vs_definition
+/**/raw_pointers_and_references
+/**/raw_smart
+/**/01_student_manager
+
 # 编译中间文件
 *.d
 *.dSYM/
+*.i
+*.s
+*.bc
+*.gch
+*.pch
+
+# 静态库和动态库
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
 
 # macOS 特定
 .DS_Store
 *.swp
 *.swo
+.AppleDouble
+.LSOverride
 
 # IDE 配置文件
 .vscode/
@@ -26,6 +62,38 @@ CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
 Makefile
+*.cmake
+!CMakeLists.txt
+
+# Visual Studio
+.vs/
+*.vcxproj*
+*.sln
+Debug/
+Release/
+x64/
+x86/
+
+# Xcode
+*.xcodeproj/
+*.xcworkspace/
+DerivedData/
+
+# CLion
+cmake-build-*/
+
+# 调试和性能分析文件
+*.dSYM/
+*.su
+*.idb
+*.pdb
+*.gprof
+*.prof
+perf.data*
+
+# 核心转储文件
+core
+core.*
 
 # 其他
 *.log

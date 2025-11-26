@@ -18,77 +18,89 @@
 using namespace std;
 
 class Student {
-private:
-    string name;
-    int id;
-    double score;
+    private:
+        string name;
+        int id;
+        double score;
+    
+    public:
+        Student(string name, int id, double score): name(name), id(id), score(score) {
+            cout << "创建学生: "<< name << endl;
+        }
+        ~Student(){
+            cout << "销毁学生: "<< name << endl; 
+        }
 
-public:
-    Student(string n, int i, double s) : name(n), id(i), score(s) {
-        cout << "学生创建: " << name << endl;
-    }
+        string getName() const {
+            return name;
+        }
+        int getId() const {
+            return id;
+        }
+        double getScore() const {
+            return score;
+        }
+
+        void setScore(double s) {
+            score = s;
+        }
+
+        void display() const {
+            cout << "学号: "<< id
+                << ", 姓名: "<<name
+                <<", 成绩: "<<score<<endl;
+        }
+};
+class StudentManager {
+    private:
+        vector<shared_ptr<Student>> students;
     
-    ~Student() {
-        cout << "学生销毁: " << name << endl;
-    }
-    
-    // Getter
-    string getName() const { return name; }
-    int getId() const { return id; }
-    double getScore() const { return score; }
-    
-    // Setter
-    void setScore(double s) { score = s; }
-    
-    // 显示信息
-    void display() const {
-        cout << "学号: " << id 
-             << ", 姓名: " << name 
-             << ", 成绩: " << score << endl;
-    }
+    public:
+        void addStudents(const string& name, int id, double score){
+            auto student = make_shared<Student>(name, id, score);
+            students.push_back(student);
+            cout << "添加成功" << endl;
+        }
+
+        void removeStudent(int id){
+            auto it = find_if(students.begin(), students.end(),
+                [id](const shared_ptr<Student>& s){
+                    return s->getId() == id;
+                }
+            );
+
+            if (it != students.end()){
+                cout << "删除学生: "<< (*it)->getName() << endl;
+                students.erase(it);
+            } else {
+                cout << "未找到学号为: " << id << "的学生" << endl;
+            }
+            
+        }
+
+        void findStudent(int id) {
+            auto it = find_if(students.begin(), students.end(),
+                [id](const shared_ptr<Student>& s){
+                    return s->getId() == id;
+                }
+            );
+            if (it != students.end()){
+                (*it)->display();
+            }else{
+                cout << "未找到学号为 " << id << " 的学生" << endl;
+            }
+        }
+
+        void displayAll() const {
+            cout << "\n=== 所有学生 ===" << endl;
+            for(const auto& student: students){
+                student -> display()
+            }
+            cout << "总人数" << students.size() << endl;
+        }
 };
 
-class StudentManager {
-private:
-    vector<shared_ptr<Student>> students;
-
-public:
-    // 添加学生
-    void addStudent(const string& name, int id, double score) {
-        auto student = make_shared<Student>(name, id, score);
-        students.push_back(student);
-        cout << "添加成功！" << endl;
-    }
-    
-    // 删除学生（按学号）
-    void removeStudent(int id) {
-        auto it = find_if(students.begin(), students.end(),
-            [id](const shared_ptr<Student>& s) {
-                return s->getId() == id;
-            });
-        
-        if (it != students.end()) {
-            cout << "删除学生: " << (*it)->getName() << endl;
-            students.erase(it);
-        } else {
-            cout << "未找到学号为 " << id << " 的学生" << endl;
-        }
-    }
-    
-    // 查询学生（按学号）
-    void findStudent(int id) const {
-        auto it = find_if(students.begin(), students.end(),
-            [id](const shared_ptr<Student>& s) {
-                return s->getId() == id;
-            });
-        
-        if (it != students.end()) {
-            (*it)->display();
-        } else {
-            cout << "未找到学号为 " << id << " 的学生" << endl;
-        }
-    }
-    
+/*
     // 显示所有学生
     void displayAll() const {
         cout << "\n=== 所有学生 ===" << endl;
@@ -143,7 +155,7 @@ public:
         cout << "最高分学生: ";
         (*top)->display();
     }
-};
+*/
 
 void showMenu() {
     cout << "\n====== 学生成绩管理系统 ======" << endl;
