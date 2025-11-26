@@ -56,7 +56,7 @@ class StudentManager {
         vector<shared_ptr<Student>> students;
     
     public:
-        void addStudents(const string& name, int id, double score){
+        void addStudent(const string& name, int id, double score){
             auto student = make_shared<Student>(name, id, score);
             students.push_back(student);
             cout << "添加成功" << endl;
@@ -94,68 +94,54 @@ class StudentManager {
         void displayAll() const {
             cout << "\n=== 所有学生 ===" << endl;
             for(const auto& student: students){
-                student -> display()
+                student -> display();
             }
             cout << "总人数" << students.size() << endl;
         }
-};
 
-/*
-    // 显示所有学生
-    void displayAll() const {
-        cout << "\n=== 所有学生 ===" << endl;
-        for (const auto& student : students) {
-            student->display();
+        void sortByScore(bool ascending = true){
+            sort(students.begin(), students.end(),
+                [ascending](const shared_ptr<Student>& a, const shared_ptr<Student>& b){
+                    return ascending ? a->getScore() < b->getScore() : a->getScore() > b->getScore();
+                }
+            );
+            cout << "排序完成！" <<endl;
         }
-        cout << "总人数: " << students.size() << endl;
-    }
-    
-    // 按成绩排序
-    void sortByScore(bool ascending = true) {
-        sort(students.begin(), students.end(),
-            [ascending](const shared_ptr<Student>& a, const shared_ptr<Student>& b) {
-                return ascending ? a->getScore() < b->getScore() 
-                                 : a->getScore() > b->getScore();
-            });
-        cout << "排序完成！" << endl;
-    }
-    
-    // 按姓名排序
-    void sortByName() {
-        sort(students.begin(), students.end(),
-            [](const shared_ptr<Student>& a, const shared_ptr<Student>& b) {
-                return a->getName() < b->getName();
-            });
-        cout << "按姓名排序完成！" << endl;
-    }
-    
-    // 计算平均分
-    double calculateAverage() const {
-        if (students.empty()) return 0.0;
-        
-        double sum = 0;
-        for (const auto& student : students) {
-            sum += student->getScore();
+
+        void sortByName(){
+            sort(students.begin(), students.end(),
+                [](const shared_ptr<Student>& a, const shared_ptr<Student>& b){
+                    return a->getName() < b->getName();
+                }
+            );
         }
-        return sum / students.size();
-    }
-    
-    // 查找最高分
-    void findTopStudent() const {
-        if (students.empty()) {
-            cout << "没有学生记录" << endl;
-            return;
+
+        double calculateAverage() const {
+            if(students.empty()) return 0.0;
+
+            double sum = 0;
+            for(const auto& student: students){
+                sum += student->getScore();
+            }
+            return sum / students.size();
         }
-        
-        auto top = max_element(students.begin(), students.end(),
-            [](const shared_ptr<Student>& a, const shared_ptr<Student>& b) {
-                return a->getScore() < b->getScore();
-            });
-        
-        cout << "最高分学生: ";
-        (*top)->display();
-    }
-*/
+
+        void findTopStudent() const {
+            if (students.empty()){
+                cout << "没有学生记录" << endl;
+                return;
+            }
+
+            auto top = max_element(students.begin(), students.end(),
+                [](const shared_ptr<Student>& a, const shared_ptr<Student>& b){
+                    return a->getScore() < b->getScore();
+                }
+            );
+
+            cout << "最高学生分: ";
+            (*top) -> display();
+        }
+};
 
 void showMenu() {
     cout << "\n====== 学生成绩管理系统 ======" << endl;

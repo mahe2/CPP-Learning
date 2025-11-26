@@ -73,7 +73,6 @@ int main() {
     
     // 类似 Java 的 ArrayList 或 Kotlin 的 MutableList
     vector<int> dynamicArray;
-    
     // 添加元素
     dynamicArray.push_back(10);  // 类似 Java list.add()
     dynamicArray.push_back(20);

@@ -13,7 +13,7 @@ int main() {
     // ========== 基本数据类型 ==========
     
     // 整数类型
-    int age = 25;                    // 32位整数，类似 Java int
+    int age = 37;                 // 32位整数，类似 Java int
     long long bigNumber = 123456789L; // 64位整数，类似 Java long
     short smallNum = 100;             // 16位整数
     
@@ -27,6 +27,7 @@ int main() {
     
     // 字符串（C++ 风格）
     string name = "张三";              // 类似 Java String
+    string tencent = "腾讯";
     
     // ========== C++11 自动类型推导 ==========
     auto x = 42;           // 编译器自动推导为 int，类似 Kotlin 的 val x = 42
@@ -35,7 +36,9 @@ int main() {
     
     // ========== 常量 ==========
     const int MAX_SIZE = 100;         // 常量，类似 Java final 或 Kotlin val
+    const int MIN_SIZE = 0;
     constexpr double E = 2.71828;     // 编译期常量
+    constexpr int age = 20;
     
     // const vs constexpr 详细对比
     cout << "\n=== const vs constexpr ===" << endl;
