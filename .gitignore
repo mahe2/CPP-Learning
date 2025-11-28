@@ -28,6 +28,16 @@
 /**/raw_pointers_and_references
 /**/raw_smart
 /**/01_student_manager
+/**/const_cast_demo
+/**/dynamic_cast_demo
+/**/fullstack
+/**/game_rendering
+/**/move_semantics_demo
+/**/ref_comparison
+/**/templates
+/**/type_casting
+/**/type_erasure
+/**/typename_vs_class
 
 # 编译中间文件
 *.d

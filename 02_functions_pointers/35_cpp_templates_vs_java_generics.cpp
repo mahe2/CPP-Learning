@@ -53,6 +53,10 @@ void demonstrate_code_generation() {
     intVec.add(42);
     strVec.add("hello");
     
+    // 打印类型名称
+    cout << "\nintVec 类型: " << typeid(intVec).name() << endl;
+    cout << "strVec 类型: " << typeid(strVec).name() << endl;
+
     // 运行时类型检查
     cout << "\ntypeid(intVec) == typeid(strVec)? " 
          << (typeid(intVec) == typeid(strVec) ? "true" : "false") << endl;
@@ -98,6 +102,8 @@ T max_value1(T a, T b) { return a > b ? a : b; }
 
 template<class T>  // class 和 typename 完全等价
 T max_value2(T a, T b) { return a > b ? a : b; }
+
+template<typename T> T max_value3(T a, T b){ return a > b ? a : b; }
 
 // 写法2: 多类型参数
 template<typename K, typename V>
