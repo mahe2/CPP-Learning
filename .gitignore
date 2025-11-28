@@ -39,6 +39,7 @@
 /**/type_erasure
 /**/typename_vs_class
 /**/thread_basics
+/**/concurrency_demo
 
 # 编译中间文件
 *.d
