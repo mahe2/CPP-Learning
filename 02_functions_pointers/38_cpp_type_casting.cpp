@@ -67,6 +67,7 @@ void demonstrate_static_cast() {
     cout << "\n用途1: 基本类型之间转换" << endl;
     double pi = 3.14159;
     int intPi = static_cast<int>(pi);  // double → int
+    int value = static_cast<int>(pi);
     cout << "  double pi = " << pi << endl;
     cout << "  int intPi = static_cast<int>(pi) = " << intPi << endl;
     

@@ -103,7 +103,8 @@ T max_value1(T a, T b) { return a > b ? a : b; }
 template<class T>  // class 和 typename 完全等价
 T max_value2(T a, T b) { return a > b ? a : b; }
 
-template<typename T> T max_value3(T a, T b){ return a > b ? a : b; }
+template<typename T> 
+T max_value3(T a, T b){ return a > b ? a : b; }
 
 // 写法2: 多类型参数
 template<typename K, typename V>
